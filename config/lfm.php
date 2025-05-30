@@ -180,3 +180,63 @@ return [
         'memory_limit' => '256M',
     ],
 ];
+
+
+// config/lfm.php
+return [
+    // ...
+    'allow_multi_user'      => true,           // enable multiple user support
+    'private_folder_name'   => '{user_id}',    // folder name uses the authenticated user ID
+    'shared_folder_name'    => null,           // disable shared folders
+
+    // When true, user folders are created automatically on demand
+    'allow_private_folder'  => true,
+    'allow_shared_folder'   => false,
+    'allow_rename_folder'   => false,
+    // ...
+];
+
+// config/lfm.php
+return [
+    // ...
+    'acl' => [
+        'view' => function () {
+            // allow all authenticated users
+            return Auth::check();
+        },
+        'upload' => function () {
+            // only users with role 'editor' or higher
+            return Auth::check() && Auth::user()->role === 'editor';
+        },
+        'delete' => function () {
+            // only admins
+            return Auth::check() && Auth::user()->role === 'admin';
+        },
+        'rename' => function () {
+            return false;  // disable rename for all
+        },
+    ],
+    // ...
+];
+
+
+// config/lfm.php
+return [
+    // ...
+    'disk' => env('FILESYSTEM_DRIVER', 'public'),  // defaults to 'public'; set to 's3' or 'azure' only after configuring that filesystem driver in .env
+    // ...
+];
+
+// config/lfm.php
+return [
+    // ...
+    'url'  => env('AWS_URL') . '/filemanager',
+    'roots' => [
+        [
+            'disk'  => 's3',
+            'alias' => 'My S3 Storage',
+            'path'  => 'filemanager',
+        ],
+    ],
+    // ...
+];

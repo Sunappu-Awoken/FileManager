@@ -24,6 +24,24 @@
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
+                    <nav class="bg-white border-b border-gray-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16">
+      <div class="flex">
+        <!-- Existing links... -->
+        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+          {{ __('Dashboard') }}
+        </x-nav-link>
+
+        <!-- New FileManager link -->
+        <x-nav-link :href="url('laravel-filemanager')" :active="request()->is('laravel-filemanager*')">
+          {{ __('File Manager') }}
+        </x-nav-link>
+      </div>
+      <!-- Right side of navbar... -->
+    </div>
+  </div>
+</nav>
                 </header>
             @endisset
 

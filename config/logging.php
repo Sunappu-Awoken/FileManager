@@ -66,21 +66,19 @@ return [
         ],
 
         'daily' => [
-            'driver' => 'daily',
-            'path' => storage_path('logs/laravel.log'),
-            'level' => env('LOG_LEVEL', 'debug'),
-            'days' => env('LOG_DAILY_DAYS', 14),
-            'replace_placeholders' => true,
-        ],
+        'driver' => 'daily',
+        'path' => storage_path('logs/laravel.log'),
+        'level' => 'debug',
+        'days' => 14,  // retain logs for 14 days
+    ],
 
-        'slack' => [
-            'driver' => 'slack',
-            'url' => env('LOG_SLACK_WEBHOOK_URL'),
-            'username' => env('LOG_SLACK_USERNAME', 'Laravel Log'),
-            'emoji' => env('LOG_SLACK_EMOJI', ':boom:'),
-            'level' => env('LOG_LEVEL', 'critical'),
-            'replace_placeholders' => true,
-        ],
+    'slack' => [
+        'driver' => 'slack',
+        'url' => env('LOG_SLACK_WEBHOOK_URL'),
+        'username' => 'Laravel Log',
+        'emoji' => ':boom:',
+        'level' => 'critical',
+    ],
 
         'papertrail' => [
             'driver' => 'monolog',

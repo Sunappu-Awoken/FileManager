@@ -1,6 +1,14 @@
+# Laravel / PHP
 /vendor/
-/node_modules/
 /.env
 /storage/*.key
 /storage/logs/
 /bootstrap/cache/
+
+# Node / Front-end
+/node_modules/
+/public/build/
+
+# OS files
+.DS_Store
+Thumbs.db
