@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
+use UniSharp\LaravelFilemanager\Lfm;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -58,3 +61,11 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 }
+
+Route::group([
+    'prefix'     => 'laravel-filemanager',
+    'middleware' => ['web','auth'],
+], function () {
+    Lfm::routes();
+});
+

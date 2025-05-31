@@ -2,16 +2,19 @@
 Options -Indexes
 
 <IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
     RewriteEngine On
-    RewriteBase /
-
-    # Serve existing files/directories directly…
-    RewriteCond %{REQUEST_FILENAME} !-f
+    # Redirect Trailing Slashes…
+    RewriteRule ^(.*)/$ /$1 [L,R=301]
+    # Handle Front Controller…
     RewriteCond %{REQUEST_FILENAME} !-d
-
-    # …otherwise redirect to index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
 
 # Make index.php the default
 DirectoryIndex index.php
